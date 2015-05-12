@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>OpenmicMain</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  
+  <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyDY-364Z2ntYJ1djWfx1Akrrh-N0lfaeyA">
+  </script>
+  -->
+
+</head>
+<body>
+	<%= render 'layouts/header' %>
+	<div class="container">
+		<% flash.each do |name, msg| %>
+	    <%= content_tag(:div, msg, class: "alert alert-#{name} add-pad") %>
+		<% end %>
+	</div>
+	<%= yield %>
+	<%= render 'layouts/footer' %>
+</body>
+</html>

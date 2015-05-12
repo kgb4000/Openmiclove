@@ -1,0 +1,45 @@
+<div class="page-wrap">
+	<div class="container add-pad group">
+		<section class="main-content">
+			<h1 class="post-title"><%= @post.title %></h1>
+			<em class="date">Submitted <%= time_ago_in_words(@post.created_at) %> ago</em>
+			<div class="post-body"><%= @post.body %></div>
+
+			<div class="action-btn">
+				<%= link_to 'Edit', edit_post_path(@post) %> |
+				<%= link_to 'Back', posts_path %>
+			</div>
+		</section>
+		<section class="sidebar index-page">
+      <section class="sidebar-section">
+        <h2>About Open Mic Love</h2>
+        <p>Open Mic Love is a community for independent artist and promoters wishing to perfect their craft and get more fans in their cities, and other cities, by performing at open mics and showcases, and also performing at competitions, festivals, and concerts.</p>
+      </section>
+      <section class="sidebar-section">
+        <h2>Sign up for updates</h2>
+        <p>If you are an independent artist looking gain exposure, or a promoter who wants better talent, join our community now.</p>
+        <%= form_tag('/emailapi/subscribe', method: "post", id: "subscribe", remote: "true", id: "sidebar-form") do -%>
+           <%= email_field(:email, :address, {id: "email", placeholder: "Your email address here"}) %>
+           <%= submit_tag("Keep me updated!") %>
+        <% end %>
+      </section>
+      <section class="sidebar-section">
+        <h2>Recent Posts</h2>
+        <%= @posts.each do |post| %>
+          <h4 class="post-title"><%= link_to post.title, post %></h4>
+        <% end %>
+      </section>
+      <section class="sidebar-section">
+        <h2>Instagram</h2>
+        <div class="instagram-img">
+          <% @instagram.each do |instagram| %>
+            <%= image_tag instagram.images.standard_resolution.url %>
+          <% end %>
+        </div>
+      </section>
+      <section class="sidebar-section">
+        <h2>Facebook</h2>
+      </section>
+    </section>
+	</div>
+</div>

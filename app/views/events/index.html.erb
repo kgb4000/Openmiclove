@@ -1,0 +1,123 @@
+<div class="page-wrap">
+  <div class="container group">
+    <h1 class="page-title">Events</h1>
+    <section class="main-content">
+      <% @events.each do |event| %>
+        <div class="line-info">
+          <h2 class="event-type"><%= event.event_type.upcase %> | <span class=""><%= event.event_name.upcase %></span></h2>
+        </div>
+        <div class="line-info">
+          <h4 class="line-title">Where: </h4> <span class="event-place"><%= event.event_city %>, <%= event.event_state %></span>
+        </div>
+        <div class="line-info">
+          <h4 class="line-title">On: </h4> <span class="event-place"><%= (event.event_date) %></span>
+        </div>
+        <div class="line-section">
+          <h4 class="genre-title">Genre: </h4>
+          <% if event.electronic %>
+            <span class="music-badge"><%= 'Electronic '%></span>
+          <% end %>
+          <% if event.rock %>
+            <span class="music-badge"><%= 'Rock '%></span>
+          <% end %>
+          <% if event.pop %>
+            <span class="music-badge"><%= 'Pop '%></span>
+          <% end %>
+          <% if event.indie %>
+            <span class="music-badge"><%= 'Indie '%></span>
+          <% end %>
+          <% if event.jam %>
+            <span class="music-badge"><%= 'Jam '%></span>
+          <% end %>
+          <% if event.metal %>
+            <span class="music-badge"><%= 'Metal '%></span>
+          <% end %>
+          <% if event.country_music %>
+            <span class="music-badge"><%= 'Country '%></span>
+          <% end %>
+          <% if event.hip_hop %>
+            <span class="music-badge"><%= 'Hip Hop '%></span>
+          <% end %>
+          <% if event.rap %>
+            <span class="music-badge"><%= 'Rap '%></span>
+          <% end %>
+          <% if event.folk %>
+            <span class="music-badge"><%= 'Folk '%></span>
+          <% end %>
+          <% if event.jazz %>
+            <span class="music-badge"><%= 'Jazz '%></span>
+          <% end %>
+          <% if event.blues %>
+            <span class="music-badge"><%= 'Blues '%></span>
+          <% end %>
+          <% if event.alternative %>
+            <span class="music-badge"><%= 'Alternative '%></span>
+          <% end %>
+          <% if event.christian %>
+            <span class="music-badge"><%= 'Christian '%></span>
+          <% end %>
+          <% if event.latin %>
+            <span class="music-badge"><%= 'Latin '%></span>
+          <% end %>
+          <% if event.rb %>
+            <span class="music-badge"><%= 'R&B '%></span>
+          <% end %>
+          <% if event.world %>
+            <span class="music-badge"><%= 'World '%></span>
+          <% end %>
+          <% if event.classical %>
+            <span class="music-badge"><%= 'Classical '%></span>
+          <% end %>
+          <% if event.comedy %>
+            <span class="music-badge"><%= 'Comedy '%></span>
+          <% end %>
+          <% if event.spoken_word %>
+            <span class="music-badge"><%= 'Spoken Word '%></span>
+          <% end %>
+        </div>
+        <div class="line-info">
+          <h4 class="line-title">Description: </h4><span class="event-place"><%= event.event_summary.truncate(200)%></span>
+        </div>
+        <hr>
+        <div>
+          <span class="view-btn"><%= link_to 'View info', event, class: 'badge' %></span>
+        </div>
+        <hr>
+      <% end %>
+      <div>
+        <%= link_to 'Create a new Event', new_event_path, class: 'btn btn-danger' %>
+      </div>
+    </section>
+    <section class="sidebar index-page">
+      <section class="sidebar-section">
+        <h2>About Open Mic Love</h2>
+        <p>Open Mic Love is a community for independent artist and promoters wishing to perfect their craft and get more fans in their cities, and other cities, by performing at open mics and showcases, and also performing at competitions, festivals, and concerts.</p>
+      </section>
+      <section class="sidebar-section">
+        <h2>Sign up for updates</h2>
+        <p>If you are an independent artist looking gain exposure, or a promoter who wants better talent, join our community now.</p>
+        <%= form_tag('/emailapi/subscribe', method: "post", id: "subscribe", remote: "true", id: "sidebar-form") do -%>
+           <%= email_field(:email, :address, {id: "email", placeholder: "Your email address here"}) %>
+           <%= submit_tag("Keep me updated!") %>
+        <% end %>
+      </section>
+      <section class="sidebar-section">
+        <h2>Recent Posts</h2>
+        <%= @posts.each do |post| %>
+          <h4 class="post-title"><%= link_to post.title, post %></h4>
+        <% end %>
+      </section>
+      <section class="sidebar-section">
+        <h2>Instagram</h2>
+        <div class="instagram-img">
+          <% @instagram.each do |instagram| %>
+            <%= image_tag instagram.images.standard_resolution.url %>
+          <% end %>
+        </div>
+      </section>
+      <section class="sidebar-section">
+        <h2>Facebook</h2>
+      </section>
+    </section>
+  </div>
+</div>
